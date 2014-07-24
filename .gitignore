@@ -9,3 +9,4 @@ example/db.sqlite3
 runTest
 manage.py
 README.md
+wauth/templates/wauth/test.html
