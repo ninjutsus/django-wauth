@@ -8,5 +8,5 @@ example/db.sqlite3
 .idea
 runTest
 manage.py
-README.md
 wauth/templates/wauth/test.html
+README.rst
