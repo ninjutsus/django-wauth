@@ -46,3 +46,23 @@ When the user is logueado, **login external** redirect to */* raiz url
 
 ###Login Complete
     Visit: http://127.0.0.1:8000/wauth
+    
+
+###Helpers
+You can use the following tags
+
+For add content
+
+    {% block content %}
+    {% endblock %}
+    
+For add css files
+
+    {% block extracss %}
+    {% endblock %}
+
+For add js files
+
+    {% block extrajs %}
+    {% endblock %}
+    
