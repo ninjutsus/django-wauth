@@ -130,34 +130,24 @@
                 dataType: "json",
                 data: dat,
 
-
                 success: function (data) {
-                    console.log("====");
-                    console.log(data);
                     if (data.redirect) {
                         window.location.assign("/");
                     } else {
                         if (data.success == true) {
-                            //recargar la pagina
-                            //luego aparecer notificacion de bienvenido
                             location.reload();
-                            $('.popup-box').stop().animate({
-                                'opacity': 0,
-                                'top': '-50%'
-                            }, 400);
+
                         } else {
                             $('#loginModal').foundation('reveal', 'close');
                             //error on the login
                             setTimeout(function () {
-
-                                //classie.remove( bttn, 'active' );
 
                                 // create the notification
                                 var notification = new NotificationFx({
                                     message: data.message,
                                     layout: 'growl',
                                     effect: 'slide',
-                                    type: 'error', // notice, warning or error
+                                    type: 'error' // notice, warning or error
 
                                 });
 
@@ -169,11 +159,23 @@
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr);
-                    console.log(ajaxOptions);
-                    console.log(thrownError);
-                    alert('login failed - please try again');
-                },
+                    $('#loginModal').foundation('reveal', 'close');
+                    //error message
+                    setTimeout(function () {
+
+                        // create the notification
+                        var notification = new NotificationFx({
+                            message: 'Login failed - Please try again',
+                            layout: 'growl',
+                            effect: 'slide',
+                            type: 'error' // notice, warning or error
+                        });
+
+                        // show the notification
+                        notification.show();
+
+                    }, 100); //time show notification
+                }
             });
         }
     }

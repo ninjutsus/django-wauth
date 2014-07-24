@@ -33,7 +33,6 @@ def login_view(request):
                         data = {'success': True, 'message': 'Login Success', 'redirect': True}
                     else:
                         data = {'success': True, 'message': 'Login Success', 'redirect': False}
-                        # return render_to_response('principal/home.html', {}, context_instance=RequestContext(request))
 
                 else:
                     data = {'success': False, 'message': 'User is not active', 'redirect': False}
