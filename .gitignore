@@ -1,0 +1,7 @@
+*.pyc
+*~
+build
+.coverage
+dist
+django_wauth.egg-info
+example/db.sqlite3
