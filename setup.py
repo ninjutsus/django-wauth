@@ -15,9 +15,9 @@ setup(
     license=LICENCE,
     description='A simple Django app to login via ajax',
     long_description=README,
-    url='github.com/wils0n/django-wauth',
-    author='wils0n',
-    author_email='wiljm0.0@gmail.com',
+    url='https://github.com/Ninjitsus/django-wauth.git',
+    author='NinjaCoder',
+    author_email='ninjacoding.co@gmail.com',
     install_requires=[
         "Django>=1.6",
         "argparse>=1.2.1",
