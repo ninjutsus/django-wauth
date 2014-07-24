@@ -1,106 +1,106 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{%block title%}WAUTH{%endblock%}</title>
-    <link rel="stylesheet" href="{{STATIC_URL}}vendor/foundation/css/normalize.css">
-    <link rel="stylesheet" href="{{STATIC_URL}}vendor/foundation/css/foundation.css">
-    <link rel="stylesheet" href="{{STATIC_URL}}wauth/css/css.css">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}WAUTH{% endblock %}</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}vendor/foundation/css/normalize.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}vendor/foundation/css/foundation.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}wauth/css/css.css">
 
-    <script src="{{STATIC_URL}}vendor/foundation/js/vendor/modernizr.js"></script>
-    <script src="{{STATIC_URL}}vendor/foundation/js/vendor/jquery.js"></script>
-    <script src="{{STATIC_URL}}vendor/foundation/js/foundation.min.js"></script>
+    <script src="{{ STATIC_URL }}vendor/foundation/js/vendor/modernizr.js"></script>
+    <script src="{{ STATIC_URL }}vendor/foundation/js/vendor/jquery.js"></script>
+    <script src="{{ STATIC_URL }}vendor/foundation/js/foundation.min.js"></script>
     <script>
-      $(document).foundation();
+        $(document).foundation();
     </script>
-    
-  </head>
-  <body>
-    
-      <nav class="top-bar" data-topbar data-options="is_hover: false">
-        <ul class="title-area">
-          <li class="name">
+
+</head>
+<body>
+
+<nav class="top-bar" data-topbar data-options="is_hover: false">
+    <ul class="title-area">
+        <li class="name">
             <h1><a href="/">WAUTH</a></h1>
-          </li>
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-        <section class="top-bar-section">
-      {%if user.is_authenticated%}
-          <ul class="right show-for-large-up">
-            <li class="has-dropdown">
-              <a href="#">
-              <img src="{{STATIC_URL}}wauth/img/person.jpg" width="35" class="img-circle"> 
-              {{user.username}}
-              </a>
-              <ul class="dropdown">
-                <li><a href="#">Perfil</a></li>
-                <li><a href="{%url 'auth_logout'%}">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        {% if user.is_authenticated %}
+            <ul class="right show-for-large-up">
+                <li class="has-dropdown">
+                    <a href="#">
+                        <img src="{{ STATIC_URL }}wauth/img/person.jpg" width="35" class="img-circle">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
 
-          <ul class="right hide-for-large-up"> <!--for responsive-->
-            <li class="has-dropdown">
-              <a href="#">
-              <img src="{{STATIC_URL}}wauth/img/person.jpg" width="35" class="img-circle"> 
-              {{user.username}}
-              </a>
-              <ul class="dropdown">
-                <li><a href="#">Perfil</a></li>
-                <li><a href="{%url 'auth_logout'%}">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-    {%else%}
-        <ul class="right show-for-large-up">
-          <!--<li class="divider"></li>-->
-          <li><a href="#" data-reveal-id="loginModal">Login</a></li>
-        </ul>
+            <ul class="right hide-for-large-up"> <!--for responsive-->
+                <li class="has-dropdown">
+                    <a href="#">
+                        <img src="{{ STATIC_URL }}wauth/img/person.jpg" width="35" class="img-circle">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="right show-for-large-up">
+                <!--<li class="divider"></li>-->
+                <li><a href="#" data-reveal-id="loginModal">Login</a></li>
+            </ul>
 
-        <ul class="right hide-for-large-up"><!--for responsive-->
-          <li><a href="#" data-reveal-id="loginModal">Login</a></li>
-        </ul>
-    {%endif%}
-        </section>
-      </nav>
-      
+            <ul class="right hide-for-large-up"><!--for responsive-->
+                <li><a href="#" data-reveal-id="loginModal">Login</a></li>
+            </ul>
+        {% endif %}
+    </section>
+</nav>
+
 
 <!--Modal-->
-    {%if not user.is_authenticated%}
-       <div class="row">
+{% if not user.is_authenticated %}
+    <div class="row">
         <div id="loginModal" class="reveal-modal tiny" data-reveal>
-          <form data-abide onsubmit="return false;">
-            {% csrf_token %}
-            <fieldset style="border:none !important;">
-              <legend>Login</legend>
-              <div class="row">
-              <div class="large-12 columns">
-                  <label>Username
-                    <input type="text" placeholder="Username" name="username" required/>
-                  </label>
-                  <small class="error">required</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <label for="password">Password <!--<small>required</small>-->
-                    <input type="password" id="password" placeholder="Password" name="password" required>
-                  </label>
-                  <small class="error">required</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <button type="submit" class="medium button green" onclick="Login()">Submit</button>
-                </div>
-              </div>
+            <form data-abide onsubmit="return false;">
+                {% csrf_token %}
+                <fieldset style="border:none !important;">
+                    <legend>Login</legend>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Username
+                                <input type="text" placeholder="Username" name="username" required/>
+                            </label>
+                            <small class="error">required</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label for="password">Password <!--<small>required</small>-->
+                                <input type="password" id="password" placeholder="Password" name="password" required>
+                            </label>
+                            <small class="error">required</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <button type="submit" class="medium button green" onclick="Login()">Submit</button>
+                        </div>
+                    </div>
 
-            </fieldset>
-          </form>
+                </fieldset>
+            </form>
         </div>
-        </div>
-    {%endif%}
+    </div>
+{% endif %}
 
 {% include 'wauth/messages.html' %}
 
@@ -108,77 +108,77 @@
 
 {% endblock %}
 
-<script src="{{STATIC_URL}}vendor/foundation/js/vendor/jquery.js"></script>
-<script src="{{STATIC_URL}}vendor/foundation/js/foundation.min.js"></script>
+<script src="{{ STATIC_URL }}vendor/foundation/js/vendor/jquery.js"></script>
+<script src="{{ STATIC_URL }}vendor/foundation/js/foundation.min.js"></script>
 <script>
-  $(document).foundation();
+    $(document).foundation();
 </script>
 
-  <script type="text/javascript">
-        function Login(){
-          var dat = { 
-            username: $('input[name="username"]').val(), 
-            password: $('input[name="password"]').val(), 
-            external: '{{external}}', 
+<script type="text/javascript">
+    function Login() {
+        var dat = {
+            username: $('input[name="username"]').val(),
+            password: $('input[name="password"]').val(),
+            external: '{{external}}',
             csrfmiddlewaretoken: "{{csrf_token}}",
-          };
-          console.log(dat);
-          if (dat.username != "" && dat.password != ""){
+        };
+        console.log(dat);
+        if (dat.username != "" && dat.password != "") {
             $.ajax({
-                url:"{% url 'auth_login' %}",
-                type:"POST",
+                url: "{% url 'auth_login' %}",
+                type: "POST",
                 dataType: "json",
                 data: dat,
 
-                
-                success:function (data) {
-                  console.log("====");
-                  console.log(data);
-                  if(data.redirect){
-                    window.location.assign("/");
-                  }else{
-                    if (data.success==true){
-                        //recargar la pagina
-                        //luego aparecer notificacion de bienvenido
-                        location.reload();                    
-                          $('.popup-box').stop().animate({
-                            'opacity': 0,
-                            'top': '-50%'
-                          },400);
-                    }else{
-                          $('#loginModal').foundation('reveal', 'close');
-                          //error on the login
-                          setTimeout( function() {
 
-                            //classie.remove( bttn, 'active' );
-                            
-                            // create the notification
-                            var notification = new NotificationFx({
-                              message : data.message,
-                              layout : 'growl',
-                              effect : 'slide',
-                              type : 'error', // notice, warning or error
-                              
-                            });
+                success: function (data) {
+                    console.log("====");
+                    console.log(data);
+                    if (data.redirect) {
+                        window.location.assign("/");
+                    } else {
+                        if (data.success == true) {
+                            //recargar la pagina
+                            //luego aparecer notificacion de bienvenido
+                            location.reload();
+                            $('.popup-box').stop().animate({
+                                'opacity': 0,
+                                'top': '-50%'
+                            }, 400);
+                        } else {
+                            $('#loginModal').foundation('reveal', 'close');
+                            //error on the login
+                            setTimeout(function () {
 
-                            // show the notification
-                            notification.show();
+                                //classie.remove( bttn, 'active' );
 
-                          }, 200 ); //time show notification
+                                // create the notification
+                                var notification = new NotificationFx({
+                                    message: data.message,
+                                    layout: 'growl',
+                                    effect: 'slide',
+                                    type: 'error', // notice, warning or error
+
+                                });
+
+                                // show the notification
+                                notification.show();
+
+                            }, 200); //time show notification
+                        }
                     }
-                  }
                 },
-                error: function(xhr, ajaxOptions, thrownError){
-                  console.log(xhr);
-                  console.log(ajaxOptions);
-                  console.log(thrownError);
-                  alert('login failed - please try again'); 
-              }, 
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(xhr);
+                    console.log(ajaxOptions);
+                    console.log(thrownError);
+                    alert('login failed - please try again');
+                },
             });
-          }
         }
+    }
 
-      </script>
+</script>
 
-  </body>
+</body>
 </html>

@@ -12,17 +12,18 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse, HttpResponseRedirect
 import json
 
+
 class BaseView(TemplateView):
-	template_name = 'wauth/base.html'
+    template_name = 'wauth/base.html'
+
 
 def login_view(request):
     if request.method == 'POST':
         if request.is_ajax:
             username = request.POST['username']
             password = request.POST['password']
-
             external = request.POST['external']
-            #import pdb; pdb.set_trace()
+
             user = authenticate(username=username, password=password)
 
             if user is not None:
@@ -45,6 +46,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/')
+
 
 class LoginExternalView(View):
     template_name = "wauth/login_external.html"
