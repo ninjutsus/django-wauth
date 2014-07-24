@@ -8,22 +8,13 @@ Detailed documentation is in the "docs" directory.
 
 Quick start
 -----------
+1. Install:
 
-1. Add "wauth" to your INSTALLED_APPS setting like this::
-
-      INSTALLED_APPS = (
-          ...
-          'wauth',
-      )
+       pip install https://github.com/Ninjitsus/django-wauth.git/origin/master.zip
 
 2. Include the polls URLconf in your project urls.py like this:
 
       url(r'^wauth/', include('wauth.urls')),
 
-3. Run `python manage.py syncdb` to create the wauth models.
-
-4. Start the development server and visit http://127.0.0.1:8000/admin/
-   to create a wauth (you'll need the Admin app enabled).
-
-5. Visit http://127.0.0.1:8000/ to participate in the wauth.
+3. Visit http://127.0.0.1:8000/wauth to use the app.
 
