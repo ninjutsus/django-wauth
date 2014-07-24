@@ -18,7 +18,7 @@ Quick start
 
 2. Include the polls URLconf in your project urls.py like this:
 
-      url(r'^/', include('wauth.urls')),
+      url(r'^wauth/', include('wauth.urls')),
 
 3. Run `python manage.py syncdb` to create the wauth models.
 
