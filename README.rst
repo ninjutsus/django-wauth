@@ -10,7 +10,7 @@ Quick start
 -----------
 1. Install:
 
-       pip install https://github.com/ninjutsus/django-wauth/archive/master.zip
+       pip install https://github.com/ninjutsus/django-wauth/zipball/master
 
 2. Include the polls URLconf in your project urls.py like this:
 
