@@ -1,6 +1,4 @@
-
 #Wauth
-
 
 Wauth is a simple Django app to login via ajax. This process is very common, which is why this app will allow you to build a small aplication login quickly.
 
@@ -20,13 +18,22 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
 ##Quick start
 
-####Modal:
+###Modal:
 
 First, extends:
 
-    {% extends 'wauth/modal.html' %}
+    {% extends 'wauth/base-slim.html' %}
+    
+Then, there are two ways to do this:
 
-Then, in _block_ _content_ add the links for _login_ or _logout_
+**The first:**
+
+    {% block content %}
+        {% include 'wauth/nav.html' %}
+        {% include 'wauth/modal.html' %}
+    {% endblock %}
+
+**The second:**
 
     {% block content %}
         {% if user.is_authenticated %}
@@ -35,24 +42,29 @@ Then, in _block_ _content_ add the links for _login_ or _logout_
         {% else %}
             <a href="#" data-reveal-id="loginModal">Login</a>
         {% endif %}
+        
+        {% include 'wauth/modal.html' %}
     {% endblock %}
     
 ###Login external
 
 First, extends:
 
-    {% extends 'wauth/login_external.html' %}
-    
+    {% extends 'wauth/login-external.html' %}
     
 **Note:**
-When the user is logueado, **login external** redirect to */* raiz url
+When the user is log in, **login external** redirect to */* raiz url
 
 
 ###Login Complete
-    Visit: http://127.0.0.1:8000/wauth
+    visit: http://127.0.0.1:8000/wauth
+    
+Your can build this:
+ 
+    {% extends 'wauth/base.html' %}
     
 
-###Helpers
+####Helpers
 You can use the following tags
 
 For add content
