@@ -48,7 +48,7 @@ def logout_view(request):
 
 
 class LoginExternalView(View):
-    template_name = "wauth/login_external.html"
+    template_name = "wauth/login-external.html"
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, {'external': 'true'})

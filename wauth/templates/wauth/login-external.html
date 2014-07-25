@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>
+        {% block title %}WAUTH{% endblock %}
+    </title>
+
+    {% include 'wauth/libraries-top.html' %}
+
+    {% block extracss %}{% endblock %}
+
+</head>
+<body>
+
+    <nav class="top-bar" data-topbar data-options="is_hover: false">
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="/">WAUTH</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
+        </ul>
+    </nav>
+
+    {% include 'wauth/form-login.html' %}
+
+    {% include 'wauth/messages.html' %}
+
+    {% block content %}{% endblock %}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ('{{user.is_authenticated}}' == 'True') {
+                window.location.assign("/");
+            }
+        });
+    </script>
+
+    {% include 'wauth/libraries-buttom.html' %}
+
+    {% block extrajs %}{% endblock %}
+
+</body>
+</html>
