@@ -12,7 +12,6 @@
             external: '{{external}}',
             csrfmiddlewaretoken: "{{csrf_token}}",
         };
-        console.log(dat);
         if (dat.username != "" && dat.password != "") {
             $.ajax({
                 url: "{% url 'auth_login' %}",
