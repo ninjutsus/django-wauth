@@ -1,0 +1,73 @@
+<script src="{{ STATIC_URL }}vendor/foundation/js/vendor/jquery.js"></script>
+<script src="{{ STATIC_URL }}vendor/foundation/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
+
+<script type="text/javascript">
+    function Login() {
+        var dat = {
+            username: $('input[name="username"]').val(),
+            password: $('input[name="password"]').val(),
+            external: '{{external}}',
+            csrfmiddlewaretoken: "{{csrf_token}}",
+        };
+        console.log(dat);
+        if (dat.username != "" && dat.password != "") {
+            $.ajax({
+                url: "{% url 'auth_login' %}",
+                type: "POST",
+                dataType: "json",
+                data: dat,
+
+                success: function (data) {
+                    if (data.redirect) {
+                        window.location.assign("/");
+                    } else {
+                        if (data.success == true) {
+                            location.reload();
+
+                        } else {
+                            $('#loginModal').foundation('reveal', 'close');
+                            //error on the login
+                            setTimeout(function () {
+
+                                // create the notification
+                                var notification = new NotificationFx({
+                                    message: data.message,
+                                    layout: 'growl',
+                                    effect: 'slide',
+                                    type: 'warning' // notice, warning or error
+
+                                });
+
+                                // show the notification
+                                notification.show();
+
+                            }, 200); //time show notification
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $('#loginModal').foundation('reveal', 'close');
+                    //error message
+                    setTimeout(function () {
+
+                        // create the notification
+                        var notification = new NotificationFx({
+                            message: 'Login failed - Please try again',
+                            layout: 'growl',
+                            effect: 'slide',
+                            type: 'error' // notice, warning or error
+                        });
+
+                        // show the notification
+                        notification.show();
+
+                    }, 100); //time show notification
+                }
+            });
+        }
+    }
+
+</script>

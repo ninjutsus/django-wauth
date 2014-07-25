@@ -1,0 +1,46 @@
+<nav class="top-bar" data-topbar data-options="is_hover: false">
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="/">WAUTH</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        {% if user.is_authenticated %}
+            <ul class="right show-for-large-up">
+                <li class="has-dropdown">
+                    <a href="#">
+                        <img src="{{ STATIC_URL }}wauth/img/person.jpg" width="35" class="img-circle">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="right hide-for-large-up"> <!--for responsive-->
+                <li class="has-dropdown">
+                    <a href="#">
+                        <img src="{{ STATIC_URL }}wauth/img/person.jpg" width="35" class="img-circle">
+                        {{ user.username }}
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="right show-for-large-up">
+                <!--<li class="divider"></li>-->
+                <li><a href="#" data-reveal-id="loginModal">Login</a></li>
+            </ul>
+
+            <ul class="right hide-for-large-up"><!--for responsive-->
+                <li><a href="#" data-reveal-id="loginModal">Login</a></li>
+            </ul>
+        {% endif %}
+    </section>
+</nav>
