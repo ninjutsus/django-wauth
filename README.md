@@ -8,7 +8,7 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
         pip install https://github.com/ninjutsus/django-wauth/zipball/master
 
-2. Include the polls URLconf in your project urls.py like this:
+2. Include the wauth URLconf in your project urls.py like this:
 
         url(r'^wauth/', include('wauth.urls')),
 
@@ -35,7 +35,7 @@ Then, there are two ways to do this:
 
     {% block content %}
         {% if user.is_authenticated %}
-            Bienvenido: {{ user.username }}<br>
+            Welcome: {{ user.username }}<br>
             <li><a href="{% url 'auth_logout' %}">Logout</a></li>
         {% else %}
             <a href="#" data-reveal-id="loginModal">Login</a>
