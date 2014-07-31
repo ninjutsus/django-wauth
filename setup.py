@@ -1,7 +1,7 @@
 import os
 from setuptools import setup
 
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 LICENSE = open(os.path.join(os.path.dirname(__file__), 'LICENSE')).read()
 
 # allow setup.py to be run from any path
