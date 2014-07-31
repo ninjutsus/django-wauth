@@ -17,6 +17,7 @@ class BaseView(TemplateView):
     template_name = 'wauth/base.html'
 
 
+@csrf_protect
 def login_view(request):
     if request.method == 'POST':
         if request.is_ajax:
