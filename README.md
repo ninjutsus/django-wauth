@@ -16,7 +16,7 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
 ##Quick start
 
-{% extends 'wauth/base.html' %}
+    {% extends 'wauth/base.html' %}
     
 ###Login external
 
