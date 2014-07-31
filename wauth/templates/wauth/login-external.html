@@ -1,45 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>
-        {% block title %}WAUTH{% endblock %}
-    </title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    {% include 'wauth/libraries-top.html' %}
+  <title>
+    {%block title%}
 
-    {% block extracss %}{% endblock %}
+    {%endblock%}
+  </title>
+
+  <link href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap-flaty.css" rel="stylesheet">
+  <link href="{{ STATIC_URL }}wauth/css/messages.css" rel="stylesheet">
+  <link href="{{ STATIC_URL }}wauth/css/css.css" rel="stylesheet">
+  <script src="{{ STATIC_URL }}vendor/bootstrap/js/jquery.min.js" type="text/javascript"></script>
 
 </head>
+
 <body>
 
-    <nav class="top-bar" data-topbar data-options="is_hover: false">
-        <ul class="title-area">
-            <li class="name">
-                <h1><a href="/">WAUTH</a></h1>
-            </li>
-            <li class="toggle-topbar menu-icon"><a href=""><span>Menu</span></a></li>
-        </ul>
-    </nav>
+  {% include 'wauth/messages.html' %}
+  {% include 'wauth/form-login.html' %}
 
-    {% include 'wauth/form-login.html' %}
+  {% block content %}
+  
+  {% endblock %}
 
-    {% include 'wauth/messages.html' %}
+  <script src="{{ STATIC_URL }}vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="{{ STATIC_URL }}vendor/bootstrap/validator/js/bootstrapValidator.min.js" type="text/javascript"></script>
 
-    {% block content %}{% endblock %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#loginForm').bootstrapValidator({
+          message: 'This value is not valid',
+          feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+              username: {
+                  message: 'The username is not valid',
+                  validators: {
+                      notEmpty: {
+                          message: 'The username is required and cannot be empty'
+                      },
+                      /*stringLength: {
+                          min: 6,
+                          max: 30,
+                          message: 'The username must be more than 6 and less than 30 characters long'
+                      },*/
+                      regexp: {
+                          regexp: /^[a-zA-Z0-9_]+$/,
+                          message: 'The username can only consist of alphabetical, number and underscore'
+                      }
+                  }
+              },
+              password: {
+                feedbackIcons: 'false',
+                  validators: {
+                      notEmpty: {
+                          message: 'The password is required and cannot be empty'
+                      },
+                      stringLength: {
+                          min: 4,
+                          max: 30,
+                          message: 'The password must be more than 6 and less than 30 characters long'
+                      },
+                  }
+              }
+          }
+      });
+    });
+  </script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            if ('{{user.is_authenticated}}' == 'True') {
-                window.location.assign("/");
-            }
-        });
-    </script>
 
-    {% include 'wauth/libraries-buttom.html' %}
+  {% include 'wauth/ajax-login.html'%}
 
-    {% block extrajs %}{% endblock %}
+
+{% block extracss %}{% endblock %}
+{% block extrajs %}{% endblock %}
 
 </body>
 </html>

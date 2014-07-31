@@ -1,32 +1,15 @@
 {% if not user.is_authenticated %}
-    <div class="row">
-        <form data-abide onsubmit="return false;" class="will tiny">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Login</legend>
-                <div class="row">
-                    <div class="large-12 columns">
-                        <label>Username
-                            <input type="text" placeholder="Username" name="username" required/>
-                        </label>
-                        <small class="error">required</small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="large-12 columns">
-                        <label for="password">Password <!--<small>required</small>-->
-                            <input type="password" id="password" placeholder="Password" name="password" required>
-                        </label>
-                        <small class="error">required</small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="large-12 columns">
-                        <button type="submit" class="medium button green" onclick="Login()">Submit</button>
-                    </div>
-                </div>
-
-            </fieldset>
+    <div class="container">
+        <form role="form" id="loginForm" data-abide onsubmit="return false;" style="position:absolute; top:50%; left: 50%; margin-top: -100px; margin-left: -100px;">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          </div>
+         <button type="submit" class="btn btn-embossed btn-primary" onclick="Login()">Submit</button>
         </form>
     </div>
 {% endif %}

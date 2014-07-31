@@ -16,33 +16,7 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
 ##Quick start
 
-###Modal:
-
-First, extends:
-
-    {% extends 'wauth/base-slim.html' %}
-    
-Then, there are two ways to do this:
-
-**The first:**
-
-    {% block content %}
-        {% include 'wauth/nav.html' %}
-        {% include 'wauth/modal.html' %}
-    {% endblock %}
-
-**The second:**
-
-    {% block content %}
-        {% if user.is_authenticated %}
-            Welcome: {{ user.username }}<br>
-            <li><a href="{% url 'auth_logout' %}">Logout</a></li>
-        {% else %}
-            <a href="#" data-reveal-id="loginModal">Login</a>
-        {% endif %}
-        
-        {% include 'wauth/modal.html' %}
-    {% endblock %}
+{% extends 'wauth/base.html' %}
     
 ###Login external
 
@@ -51,15 +25,9 @@ First, extends:
     {% extends 'wauth/login-external.html' %}
     
 **Note:**
-When the user is log in, **login external** redirect to */* raiz url
+When the user is log in, **login external** redirect to */* raiz url  
+This can be useful for login redirecto in some login redirect decorator
 
-
-###Login Complete
-    visit: http://127.0.0.1:8000/wauth
-    
-Your can build this:
- 
-    {% extends 'wauth/base.html' %}
     
 
 ####Helpers

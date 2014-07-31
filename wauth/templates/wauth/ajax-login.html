@@ -1,9 +1,3 @@
-<script src="{{ STATIC_URL }}vendor/foundation/js/vendor/jquery.js"></script>
-<script src="{{ STATIC_URL }}vendor/foundation/js/foundation.min.js"></script>
-<script>
-    $(document).foundation();
-</script>
-
 <script type="text/javascript">
     function Login() {
         var dat = {
@@ -27,8 +21,7 @@
                             location.reload();
 
                         } else {
-                            $('#loginModal').foundation('reveal', 'close');
-                            //error on the login
+                            $('#loginModal').modal('hide');
                             setTimeout(function () {
 
                                 // create the notification
@@ -36,7 +29,7 @@
                                     message: data.message,
                                     layout: 'growl',
                                     effect: 'slide',
-                                    type: 'warning' // notice, warning or error
+                                    type: 'error' // notice, warning or error
 
                                 });
 
@@ -48,7 +41,7 @@
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $('#loginModal').foundation('reveal', 'close');
+                    $('#loginModal').modal('hide');
                     //error message
                     setTimeout(function () {
 

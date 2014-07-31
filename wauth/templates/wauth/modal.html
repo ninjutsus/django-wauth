@@ -1,34 +1,25 @@
 {% if not user.is_authenticated %}
-    <div class="row">
-        <div id="loginModal" class="reveal-modal tiny" data-reveal>
-            <form data-abide onsubmit="return false;">
-                {% csrf_token %}
-                <fieldset style="border:none !important;">
-                    <legend>Login</legend>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>Username
-                                <input type="text" placeholder="Username" name="username" required/>
-                            </label>
-                            <small class="error">required</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label for="password">Password <!--<small>required</small>-->
-                                <input type="password" id="password" placeholder="Password" name="password" required>
-                            </label>
-                            <small class="error">required</small>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <button type="submit" class="medium button green" onclick="Login()">Submit</button>
-                        </div>
-                    </div>
-
-                </fieldset>
-            </form>
-        </div>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog login-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" id="loginForm" data-abide onsubmit="return false;">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          </div>
+         <button type="submit" class="btn btn-embossed btn-primary" onclick="Login()">Submit</button>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 {% endif %}
