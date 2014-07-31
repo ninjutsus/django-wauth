@@ -13,7 +13,7 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
         url(r'^wauth/', include('wauth.urls')),
 
-3. Add "wauth" to your INSTALLED_APPS setting like this::
+3. Add "wauth" to your INSTALLED_APPS setting like this:  
 
       INSTALLED_APPS = (
           ...
