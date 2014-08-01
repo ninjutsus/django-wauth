@@ -15,12 +15,12 @@ Wauth is a simple Django app to login via ajax. This process is very common, whi
 
 3. Add "wauth" to your INSTALLED_APPS setting like this:  
 
-      INSTALLED_APPS = (
-          ...
-          'polls',
-      )
+        INSTALLED_APPS = (
+            ...
+            'wauth',
+        )
 
-4. Run `python manage.py syncdb` to create the polls models.
+4. Run `python manage.py syncdb`
 
 5. Visit http://127.0.0.1:8000/wauth to use the app.
 
